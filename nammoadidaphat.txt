@@ -232,7 +232,40 @@ int main() {
 
 VI TRI TUONG DOI HAI DUONG THANG
 
+#include <bits/stdc++.h>
+using namespace std;
+using ll=long long;
 
+struct P{ll x,y;};
+
+ll ccw(P a,P b,P c){
+    return (b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x);
+}
+
+bool on(P a,P b,P c){ 
+    return min(a.x,b.x)<=c.x && c.x<=max(a.x,b.x)
+        && min(a.y,b.y)<=c.y && c.y<=max(a.y,b.y);
+}
+
+int main(){
+    P a,b,c,d;cin>>a.x>>a.y>>b.x>>b.y>>c.x>>c.y>>d.x>>d.y;
+    ll c1=ccw(a,b,c),c2=ccw(a,b,d),c3=ccw(c,d,a),c4=ccw(c,d,b);
+
+    if(c1==0 && c2==0 && c3==0 && c4==0){ 
+    
+        if(on(a,b,c)||on(a,b,d)||on(c,d,a)||on(c,d,b)){
+      
+            vector<P> v={a,b,c,d};
+            sort(v.begin(),v.end(),[](P u,P v){return u.x==v.x?u.y<v.y:u.x<v.x;});
+            if((v[1].x==v[2].x && v[1].y==v[2].y)) cout<<1;
+            else cout<<2;
+        }else cout<<4;
+    }
+    else{
+        if(c1*c2<=0 && c3*c4<=0) cout<<3; 
+        else cout<<4;
+    }
+}
 
 =====================================================================
 
