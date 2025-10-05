@@ -1,0 +1,393 @@
+Ba điểm thẳng HÀNG
+
+#include <bits/stdc++.h>
+using namespace std;
+struct pt{
+    double x,y;
+};
+pt A,B,C;
+int main(){
+    cin>>A.x>>A.y>>B.x>>B.y>>C.x>>C.y;
+    double k=(B.x-A.x)*(C.y-B.y)-(B.y-A.y)*(C.x-B.x);
+    if(k==0){
+        cout<<"Yes";
+    }else{
+        cout<<"No";
+    }
+}
+
+======================================================================
+
+
+HỎI ĐƯỜNG
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+struct pt{
+    double x,y;
+};
+pt A,B,C;
+int main(){
+    cin>>A.x>>A.y>>B.x>>B.y>>C.x>>C.y;
+    double k=(B.x-A.x)*(C.y-B.y)-(B.y-A.y)*(C.x-B.x);
+    if(k>0){
+        cout<<"LEFT";
+    }else if(k<0){
+        cout<<"RIGHT";
+    }else{
+        cout<<"TOWARDS";
+    }
+}
+
+
+
+=============================================================================
+
+
+Khoảng cách
+
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+struct pt{
+    double x,y;
+};
+pt A,B;
+int n;
+int main(){
+    cin>>n;
+    while(n--){
+        cin>>A.x>>A.y>>B.x>>B.y;
+        if(A.y>0 && B.y>0 || A.y<0 && B.y<0){
+            B.y=-B.y;
+        }
+        long long k=sqrt(pow(A.x-B.x,2)+pow(A.y-B.y,2));
+            cout<<k<<endl;
+    }
+}
+
+===================================================================================
+
+
+DIỆN TÍCH TAM GIÁC
+
+#include <bits/stdc++.h>
+using namespace std;
+struct pt{
+    double x,y;
+};
+pt A,B,C;
+int main(){
+    cin>>A.x>>A.y>>B.x>>B.y>>C.x>>C.y;
+    double k=(B.x-A.x)*(C.y-B.y)-(B.y-A.y)*(C.x-B.x);
+    if(k==0){
+        return 0;
+    };
+    double AB=sqrt(pow((B.y-A.y),2)+pow((B.x-A.x),2));
+    double AC=sqrt(pow((C.y-A.y),2)+pow((C.x-A.x),2));
+    double BC=sqrt(pow((C.y-B.y),2)+pow((C.x-B.x),2));
+    double p=(AB+AC+BC)/2;
+    cout<<fixed<<setprecision(1)<<AB+AC+BC<<endl;
+    double s=sqrt(p*(p-AB)*(p-AC)*(p-BC));
+    cout<<fixed<<setprecision(1)<<s<<endl;
+}
+
+
+
+======================================================================================
+
+LOẠI TỨ GIÁC
+
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+struct P{ll x,y;};
+ll dist2(P a,P b){
+    return (a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y);
+}
+P vec(P a,P b){
+    return {b.x-a.x,b.y-a.y};
+}
+bool eq(P u,P v){ return u.x==v.x && u.y==v.y; }
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    P a[5];
+    for(int i=1;i<=4;i++) cin>>a[i].x>>a[i].y;
+    P ab=vec(a[1],a[2]);
+    P bc=vec(a[2],a[3]);
+    P cd=vec(a[3],a[4]);
+    P da=vec(a[4],a[1]);
+    bool hbh = eq(ab,{-cd.x,-cd.y}) && eq(bc,{-da.x,-da.y});
+    if(hbh){
+        ll d1=dist2(a[1],a[2]);
+        ll d2=dist2(a[2],a[3]);
+        ll d3=dist2(a[3],a[4]);
+        ll d4=dist2(a[4],a[1]);
+        bool canhbang=(d1==d2 && d2==d3 && d3==d4);
+        bool cheobang=(dist2(a[1],a[3])==dist2(a[2],a[4]));
+        if(canhbang && cheobang) cout<<4;        
+        else if(cheobang) cout<<3;               
+        else if(canhbang) cout<<2;               
+        else cout<<1;                            
+    }else cout<<5;                               
+}
+
+
+
+====================================================================================================
+
+TRẠM BST1
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll=long long;
+int main(){
+    ll x,y,r; cin>>x>>y>>r;
+    int n; cin>>n;
+    ll R=r*r; 
+    int c=0;
+    for(int i=0;i<n;i++){
+        ll a,b; cin>>a>>b;
+        ll d=(a-x)*(a-x)+(b-y)*(b-y);
+        if(d>R) c++;
+    }
+    cout<<c;
+}
+
+=========================================================================================================
+
+HỆ SỐ CỦA PHƯƠNG TRÌNH
+
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    double x1, y1, x2, y2, a, b, c;
+    cin >> x1 >> y1 >> x2 >> y2;
+    a = y2 - y1;
+    b = x1 - x2;
+    c = x2 * y1 - x1 * y2;
+    cout << a << " " << b << " " << c;
+    return 0;
+}
+
+
+
+==========================================================================
+
+TOA DO GIAO DIEM CUA HAI DUONG THANG
+
+
+#include <iostream>
+using namespace std;
+
+struct pt {
+    double x, y;
+};
+
+struct Line {
+    double a, b, c;
+};
+
+Line duong(pt p1, pt p2) {
+    Line L;
+    L.a = p2.y - p1.y;
+    L.b = p1.x - p2.x;
+    L.c = p2.x * p1.y - p1.x * p2.y;
+    return L;
+}
+
+int main() {
+    pt p1, p2, p3, p4;
+    cin >> p1.x >> p1.y >> p2.x >> p2.y;
+    cin >> p3.x >> p3.y >> p4.x >> p4.y;
+
+    Line L1 = duong(p1, p2);
+    Line L2 = duong(p3, p4);
+
+    double D  = L1.a * L2.b - L2.a * L1.b;
+    double Dx = L1.b * L2.c - L2.b * L1.c;
+    double Dy = L2.a * L1.c - L1.a * L2.c;
+
+    if (D == 0) {
+        cout << -1;
+    } else {
+        double x = Dx / D;
+        double y = Dy / D;
+        cout << x << " " << y;
+    }
+
+    return 0;
+}
+
+
+=================================================================
+
+VI TRI TUONG DOI HAI DUONG THANG
+
+
+
+=====================================================================
+
+DUONG CAO TOC CHUNG CU
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    vector<int> y(n);
+    for(int i=0;i<n;i++){
+        cin>>y[i]>>y[i];
+    }
+    
+    sort(y.begin(),y.end());
+    int m=y[n/2];
+    long long s=0;
+    for(int i=0;i<n;i++){
+        s+=abs(y[i]-m);
+    }
+    cout<<s;
+}
+
+
+
+
+==================================================================================
+
+Diện tích đa giác
+
+
+
+
+
+============================================================================
+
+
+BO BA DIEM THANG HANG
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+long long res=0,n;
+double X[2001],Y[2001];
+void Solve()
+{
+    for(int i=1;i<=n;++i)
+    {
+        map<double,int> m;
+      for(int j=i+1;j<=n;++j)
+        if(X[i]-X[j]!=0)
+        {
+            double temp=(Y[i]-Y[j])/(X[i]-X[j]);
+            m[temp]++;
+        }
+        else m[1e9]++;
+
+        for (auto it: m) res+=((it.second -1)* it.second)/2;
+    }
+}
+int main()
+{
+    cin>>n;
+    for(int i=1;i<=n;++i)
+    {
+        cin>>X[i]>>Y[i];
+    }
+    Solve();
+    cout<<res;
+}
+=========================================================================
+
+BAT RUOI 
+
+
+#include <bits/stdc++.h>
+using namespace std;
+using ll=long long;
+
+struct P{ll x,y;};
+
+int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n,m; ll r;
+    cin>>n>>m>>r;
+    vector<P> a(n+1), b(m+1);
+    for(int i=1;i<=n;i++) cin>>a[i].x>>a[i].y;
+    for(int j=1;j<=m;j++) cin>>b[j].x>>b[j].y;
+    vector<int> ok(n+1,0);
+    ll R=r*r;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=m;j++){
+            ll dx=a[i].x-b[j].x;
+            ll dy=a[i].y-b[j].y;
+            if(dx*dx+dy*dy<=R){ ok[i]=1; break; }
+        }
+    }
+    int ans=0;
+    for(int i=1;i<=n;i++) ans+=ok[i];
+    cout<<ans;
+}
+
+
+
+===============================================================================
+
+
+
+SWAGE
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct P {
+    int x,y;
+};
+
+int main() {
+    int n;
+    cin>>n;
+    vector<P> a(n);
+    for(int i=0;i<n;i++) cin>>a[i].x>>a[i].y;
+
+    int s=1;
+    for(int i=0;i<n;i++) {
+        map<pair<int,int>,int> m;
+        for(int j=0;j<n;j++) {
+            if(i==j) continue;
+            int dx=a[j].x-a[i].x;
+            int dy=a[j].y-a[i].y;
+
+            if(dx==0 && dy==0) continue;
+
+            int g=__gcd(dy,dx);
+            dy/=g;
+            dx/=g;
+
+            if(dx<0) {
+                dx=-dx;
+                dy=-dy;
+            } else if(dx==0 && dy<0) {
+                dy=-dy;
+            }
+
+            m[{dy,dx}]++;
+        }
+
+        for(auto p:m) s=max(s,p.second+1);
+    }
+
+    cout<<s;
+}
+
+
