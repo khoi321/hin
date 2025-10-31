@@ -1,0 +1,288 @@
+PHEP TOAN
+
+#include<bits/stdc++.h>
+using namespace std;
+long long n,k, s=0;
+int main(){
+    cin>>n>>k;
+    for(int i=1; i<=n; i++) s+=i;
+    cout<<s/k<<" "<<s%k;
+}
+=========================================================================================================
+
+
+TIM X
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    long long n;
+    cin >> n;
+    for (long long k=1;k*k<=n;k++){
+        long long X=n-k;
+        if (k*k<=X && X<(k+1)*(k+1)){
+            cout<<X;
+            return 0;
+        }
+    }
+    return 0;
+}
+=========================================================================================================
+
+BAI TAP
+
+#include <bits/stdc++.h>
+using namespace std;
+const int N = 1e6 + 7;
+int s[N];
+
+int main() {
+    int n, k;
+    cin >> n >> k;
+    for(int i = 1; i <= k; i++) {
+        int x;
+        cin >> x;
+        s[x] = 1;
+    }
+    for(int i = 1; i <= n; i++) {
+        if(s[i] == 0) {
+            cout << i << " ";
+        }
+    }
+    return 0;
+}
+
+
+============================================================================
+TU VUNG
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    string s;
+    getline(cin,s);
+    stringstream ss(s);
+    vector<string> v;
+    map<string,int> mp;
+
+    string a;
+    while(ss>>a){
+        v.push_back(a);
+        mp[a]++;
+    }
+    int dem=0;
+    string word;
+    for(auto it:mp){
+        dem=max(dem,it.second);
+    }
+    for(auto it:v){
+        if(mp[it]==dem){
+            word=it;
+            break;
+        }
+    }
+    cout<<mp.size()<<endl<<word;
+    
+}
+
+
+===========================================================================
+
+
+CUU GA
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,k;
+    long long T;
+    int u,v;
+    cin >> n >> k >> T >> u >> v;
+    vector<pair<int,int>> a(n);
+    for(int i=0;i<n;i++) cin >> a[i].first >> a[i].second;
+    vector<long long> t(n);
+    for(int i=0;i<n;i++){
+        long long dx=u-a[i].first;
+        long long dy=v-a[i].second;
+        t[i]=dx*dx+dy*dy;
+    }
+    vector<long long> con(t.begin()+k,t.end());
+    vector<long long> lon(t.begin(),t.begin()+k);
+    sort(con.begin(),con.end());
+    sort(lon.begin(),lon.end());
+    int res=0;
+    for(long long x: con){
+        if(T>=x){T-=x;res++;}else break;
+    }
+    for(long long x: lon){
+        if(T>=x){T-=x;res++;}else break;
+    }
+    cout << res;
+}
+
+
+
+=================================================================
+
+
+
+DO DEP
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+long long sodep(long long n) {
+    long long s=0;
+    for (long long i=1;i*i<=n;i++) {
+        if (n%i== 0) {
+            if (i%2==1) s+=i;
+            if (n/i!=i && (n/i)%2==1) s+=n/i;
+        }
+    }
+    return s;
+}
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    long long n;
+    cin>>n;
+    cout<<sodep(n);
+    return 0;
+}
+====================================================================
+CHINH PHUONG
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    long long n;
+    cin>>n;
+    long long S=0;
+    int i=1;
+    while (n>0) {
+        long long a=floor(sqrt(n));
+        long long k=a*a;
+        n-=k;
+        long long p=1;
+        for (int j=0;j<i;j++){
+            p*= k;
+        }
+        S += p;
+        i++;
+    }
+    cout<<S;
+}
+===============================================================
+XEP NHOM
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+map<int,int> mp;
+const int N=1e5+7;
+int a[N];
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int n;
+    cin>>n;
+    for(int i=1;i<=n;i++){
+        cin>>a[i];
+        mp[a[i]]++;
+    }
+    int dem=0;
+    for(auto it:mp){
+        if(it.second==1){
+            dem++;
+        }else{
+            cout<<it.first<<" "<<it.second;
+            cout<<endl;
+        }
+    }
+    cout<<dem;
+    return 0;
+}
+
+================================================================
+GIAI MA
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    string s,res="";
+    long long k;
+    cin >> s >> k;
+    int i=0;
+    while(i<s.size()){
+        if(isdigit(s[i])){
+            int j=i;
+            while(j<s.size() && isdigit(s[j])) j++;
+            int val=0;
+            for(int t=i;t<j;t++) val=val*10+s[t]-'0';
+            res+=char(val);
+            i=j;
+        } else {
+            char c=s[i];
+            if(isupper(c)){
+                long long shift=k%26;
+                char orig=(c-'A'-shift+26)%26+'A';
+                res+=orig;
+            } else {
+                long long shift=(k-1)%26;
+                char orig=(c-'a'-shift+26)%26+'a';
+                res+=orig;
+            }
+            i++;
+        }
+    }
+    cout << res;
+}
+
+
+=======================================================================================
+LEO NÚI
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    vector<int> h(n);
+    for (int i = 0; i < n; i++) {
+        cin >> h[i];
+    }
+    int maxLength = 0;
+    
+    for (int i = 1; i < n - 1; i++) {
+        if (h[i] > h[i-1] && h[i] > h[i+1]) {
+            int left = i - 1;
+            int right = i + 1;
+            
+            while (left > 0 && h[left-1] < h[left]) {
+                left--;
+            }
+            while (right < n - 1 && h[right] > h[right+1]) {
+                right++;
+            }
+            int length = right - left + 1;
+            if (length >= 3) {
+                maxLength = max(maxLength, length);
+            }
+        }
+    }
+    
+    cout << maxLength << endl;
+    return 0;
+}
+
